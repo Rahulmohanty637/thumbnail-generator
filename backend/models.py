@@ -17,10 +17,11 @@ class Thumbnail(SQLModel, table=True):
     id: str = Field(default_factory=_uuid, primary_key=True)
     job_id: str = Field(foreign_key="job_id")
     style_name: str = Field(default="")
+    imagekit_url: Optional[str] = Field(default=None)
     status: str = Field(default="pending")
     error_message: Optional[str] = Field(default=None)
     created_at: datetime = Field(default_factory=_now)
-    
+
     job: Optional["Job"] = Relationship(back_populates="thumbnails")
 
 
